@@ -2,7 +2,7 @@
 
 const express = require("express")
 
-const books = require("./controllers/booksController")
+const booksController = require("./controllers/booksController")
 
 const app = express()
 
@@ -10,14 +10,21 @@ app.get("/", (request, response) => {
     response.send("Olá Pallomma!")
 })
 
-app.get("/books", (req, res) => {
-    return res.json([
-        {
-            id: 1,
-            title: "Clean Code",
-            author: "Robert C. Martin"
-        }
-    ])
+app.get("/books", booksController.getAllBooks)
+
+app.post("/books", (req, res) => {
+    const createBooks = (req, res) => {
+   const {name} = req.body
+
+   const newBooks = {
+    id: Date.now(),
+    name: name
+
+
+    }
+   }
+
+    res.send("Estamos testando!")
 })
 
 module.exports = app
